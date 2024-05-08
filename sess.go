@@ -848,6 +848,10 @@ func (l *Listener) packetInput(data []byte, addr net.Addr) {
 	}
 }
 
+func (l *Listener) RemoveSession(addr string) {
+	delete(l.sessions, addr)
+}
+
 func (l *Listener) notifyReadError(err error) {
 	l.socketReadErrorOnce.Do(func() {
 		l.socketReadError.Store(err)
